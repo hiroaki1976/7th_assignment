@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $jigyousyo = $_POST['jigyousyo']. "\n";
 $a_gata = 'A型' . $_POST['a_gata'];
 $b_gata = 'B型' . $_POST['b_gata'];
@@ -13,6 +15,18 @@ $password2 = $_POST['password2']. "\n";
 $time = date('Y/m/d H:i:s') . "\n";
 file_put_contents('data/data.txt', $time . $jigyousyo . $a_gata . $b_gata. $ikou. $other. $name . $name_kana . $email . $password1 .$password2, FILE_APPEND);
 
+$_SESSION['jigyosyo'] = $jigyousyo;
+$_SESSION['a_gata'] = $a_gata;
+$_SESSION['b_gata'] = $b_gata;
+$_SESSION['ikou'] = $ikou;
+$_SESSION['other'] = $other;
+$_SESSION['name'] = $name;
+$_SESSION['name_kana'] = $name_kana;
+$_SESSION['email'] = $email;
+$_SESSION['password1'] = $password1;
+$_SESSION['password2'] = $password2;
+$_SESSION['time'] = $time;
+
 ?>
 <!DOCTYPE html>
 <html lang="jp">
@@ -22,8 +36,8 @@ file_put_contents('data/data.txt', $time . $jigyousyo . $a_gata . $b_gata. $ikou
     <title>Document</title>
 </head>
 <body>
-    <h1>書き込みしました。</h1>
-    <h2>./data/data.txt を確認しましょう！</h2>
+    <h1>ユーザー登録完了</h1>
+    <h2>「確認する」からご登録内容が確認できます</h2>
 
     <ul>
         <li><a href="read.php">確認する</a></li>
